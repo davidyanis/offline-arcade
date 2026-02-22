@@ -224,7 +224,7 @@ bootstrap().catch((error) => {
   console.error(error);
 });
 
-if ("serviceWorker" in navigator) {
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     await navigator.serviceWorker.register("/sw.js");
   });

@@ -7,29 +7,36 @@ if (!app) {
 }
 
 app.innerHTML = `
-  <h1>Offline Arcade</h1>
-  <p class="lead">
-    Play local-first game pages that continue working offline after first load.
-    Add more pages and register them in <code>game-catalog</code>.
-  </p>
-  <section class="grid">
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">Offline Games</p>
+      <h1>Offline Arcade</h1>
+      <p class="lead">
+        Quick browser games that keep working after first load. Useful on flights, trains, and low-signal moments.
+      </p>
+    </header>
+    <section class="grid">
     ${games
       .map(
         (game) => `
           <a class="card" href="${game.href}">
             <h2>${game.title}</h2>
             <p>${game.description}</p>
-            <div class="tags">
-              ${game.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+            <div class="card-meta">
+              <div class="tags">
+                ${game.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+              </div>
+              <span class="cta">Play</span>
             </div>
           </a>
         `
       )
       .join("")}
-  </section>
+    </section>
+  </main>
 `;
 
-if ("serviceWorker" in navigator) {
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     await navigator.serviceWorker.register("/sw.js");
   });

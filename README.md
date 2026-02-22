@@ -33,4 +33,4 @@ pnpm preview
 - Keep all game pages inside `apps/arcade/*/index.html` (e.g. `/breakout/`, `/racer/`)
 - Add shared systems in `packages/` (saves, input, UI HUD, audio)
 - Register new pages in `packages/game-catalog/src/index.ts`
-- Include new route shells in `apps/arcade/sw.js` core cache
+- Include new route shells in `apps/arcade/public/sw.js` core cache
