@@ -34,15 +34,19 @@ interface State {
 const statusNode = document.querySelector<HTMLSpanElement>("#status");
 const scoreNode = document.querySelector<HTMLSpanElement>("#score");
 const lastScoreNode = document.querySelector<HTMLSpanElement>("#last-score");
+const stageNode = document.querySelector<HTMLDivElement>("#stage");
 const canvasNode = document.querySelector<HTMLCanvasElement>("#game");
+const tapHintNode = document.querySelector<HTMLParagraphElement>("#tap-hint");
 
-if (!statusNode || !scoreNode || !lastScoreNode || !canvasNode) {
+if (!statusNode || !scoreNode || !lastScoreNode || !stageNode || !canvasNode || !tapHintNode) {
   throw new Error("Missing DOM nodes");
 }
 const statusEl = statusNode;
 const scoreEl = scoreNode;
 const lastScoreEl = lastScoreNode;
+const stageEl = stageNode;
 const canvas = canvasNode;
+const tapHintEl = tapHintNode;
 
 const storedLastScore = Number.parseInt(localStorage.getItem(LAST_SCORE_KEY) ?? "0", 10);
 const initialLastScore = Number.isFinite(storedLastScore) ? Math.max(0, storedLastScore) : 0;
@@ -92,7 +96,7 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-canvas.addEventListener("pointerdown", flap);
+stageEl.addEventListener("pointerdown", flap);
 window.addEventListener("resize", () => renderer?.resize());
 
 let renderer: Awaited<ReturnType<typeof createRenderer>> | null = null;
@@ -192,6 +196,9 @@ function render(): void {
 
   scoreEl.textContent = `Score: ${state.score}`;
   lastScoreEl.textContent = `Last: ${state.lastScore}`;
+  tapHintEl.hidden = state.started && !state.over;
+  tapHintEl.textContent = state.over ? "Tap to restart" : "Tap to flap";
+  tapHintEl.classList.toggle("game-over", state.over);
   if (!state.started) {
     statusEl.textContent = "Press Space / Tap";
   } else if (state.over) {

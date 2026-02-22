@@ -10,28 +10,31 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100dvh;
   background:
     radial-gradient(circle at 10% 0%, #4b2f74 0%, transparent 35%),
     linear-gradient(170deg, #20173b, #0c1226);
   font-family: "Space Grotesk", "Segoe UI", sans-serif;
   color: var(--ink);
-  display: grid;
-  place-items: center;
-  gap: 0.75rem;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  overscroll-behavior: none;
 }
 
 .hud {
-  width: min(100%, 920px);
+  width: min(100%, 1100px);
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
   background: color-mix(in srgb, var(--panel) 84%, transparent);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 0.6rem 0.8rem;
+  padding: 0.5rem 0.72rem;
+  font-size: 0.95rem;
 }
 
 .home-link {
@@ -39,10 +42,73 @@ body {
   text-decoration: none;
 }
 
+.stage {
+  width: min(100%, 1100px);
+  flex: 1;
+  margin: 0 auto;
+  position: relative;
+  display: grid;
+  place-items: center;
+  touch-action: manipulation;
+}
+
 canvas {
-  width: min(100%, 920px);
+  width: min(100%, 1100px);
   aspect-ratio: 3 / 2;
   border-radius: 16px;
   border: 1px solid var(--border);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  touch-action: manipulation;
+}
+
+.tap-hint {
+  display: none;
+  position: absolute;
+  inset: auto 50% 1rem;
+  transform: translateX(-50%);
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0.32rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: #f7faff;
+  pointer-events: none;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.tap-hint.game-over {
+  color: #fff6e6;
+}
+
+@media (max-width: 860px) {
+  body {
+    padding: 0.5rem;
+    gap: 0.45rem;
+  }
+
+  .hud {
+    gap: 0.35rem 0.75rem;
+    padding: 0.45rem 0.62rem;
+    font-size: 0.88rem;
+  }
+
+  .stage {
+    min-height: 0;
+  }
+
+  canvas {
+    width: auto;
+    height: min(82dvh, calc(100dvh - 7.8rem));
+    max-width: 100%;
+    max-height: min(82dvh, calc(100dvh - 7.8rem));
+    border-radius: 14px;
+  }
+
+  .tap-hint {
+    display: inline-flex;
+  }
 }

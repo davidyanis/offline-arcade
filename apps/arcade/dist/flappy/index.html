@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#18142e" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <title>Flappy Bird WebGPU</title>
-    <script type="module" crossorigin src="/assets/flappy-DhIiro-i.js"></script>
+    <script type="module" crossorigin src="/assets/flappy-Bd7n9Zcv.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
-    <link rel="stylesheet" crossorigin href="/assets/flappy-Zg2j_Iej.css">
+    <link rel="stylesheet" crossorigin href="/assets/flappy-ClCREJ9t.css">
   </head>
   <body>
     <div class="hud">
@@ -17,6 +17,9 @@
       <span id="score">Score: 0</span>
       <span id="last-score">Last: 0</span>
     </div>
-    <canvas id="game" width="900" height="600"></canvas>
+    <div id="stage" class="stage">
+      <canvas id="game" width="900" height="600"></canvas>
+      <p id="tap-hint" class="tap-hint">Tap to flap</p>
+    </div>
   </body>
 </html>
