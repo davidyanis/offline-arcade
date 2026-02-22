@@ -1,0 +1,9 @@
+{
+  "name": "Offline Arcade",
+  "short_name": "Arcade",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f7ff",
+  "theme_color": "#112240",
+  "icons": []
+}
