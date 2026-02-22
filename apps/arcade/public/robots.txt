@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://offline-arcade-omega.vercel.app/sitemap.xml
