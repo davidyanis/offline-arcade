@@ -3,6 +3,14 @@ import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   base: "/",
+  build: {
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL("./index.html", import.meta.url)),
+        flappy: fileURLToPath(new URL("./flappy/index.html", import.meta.url))
+      }
+    }
+  },
   resolve: {
     alias: {
       "@offline-arcade/game-catalog": fileURLToPath(
