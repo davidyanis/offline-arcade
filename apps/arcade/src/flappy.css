@@ -21,6 +21,7 @@ body {
   gap: 0.55rem;
   padding: 0.75rem;
   overscroll-behavior: none;
+  touch-action: manipulation;
 }
 
 .hud {
